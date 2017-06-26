@@ -106,4 +106,13 @@ public class TestController {
         Logger.getLogger(TestController.class).log(Level.INFO, "更新件数は" + count + "件です。");
         return "redirect:/test/";
     }
+
+    // トランザクションのサンプル
+    @RequestMapping(value = "/test/transaction/{id}", method = RequestMethod.GET)
+    public String testTransaction(Model model, @PathVariable int id) {
+        TestDto dto = new TestDto();
+        dto.setId(id);
+        testService.deleteAllAndInsert(dto);
+        return "redirect:/test/";
+    }
 }

@@ -35,6 +35,12 @@
 	    update test set name = #{name} where id = #{id}
 	</update>
 
+	<!-- トランザクション失敗用insert -->
+	<insert id="insertFailTest" parameterType="String">
+		insert into testtest(name)
+		values (#{name})
+	</insert>
+
 
 
 

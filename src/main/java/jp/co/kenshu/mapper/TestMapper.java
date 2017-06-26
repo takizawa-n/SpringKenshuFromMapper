@@ -23,5 +23,8 @@ public interface TestMapper {
     //update
     int updateTest(TestDto dto);
 
+    // トランザクションテスト用の失敗メソッド
+    int insertFailTest(Object object);
+
 
 }

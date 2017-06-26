@@ -27,10 +27,13 @@
         <property name="url" value="jdbc:mysql://localhost/usetest" />
         <property name="username" value="root" />
         <property name="password" value="root" />
+         <!-- MySQLはデフォルトでautoコミットがONなのでOFFにする -->
+		<property name="defaultAutoCommit" value="false" />
     </bean>
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
     </bean>
+    <!-- どこのパッケージをmapperとして認識するかの設定 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="jp.co.kenshu.mapper" />
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
@@ -42,4 +45,8 @@
         class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource" />
     </bean>
+
+	<!-- @Transactionalを使用するために定義 これにより、アノテーションだけでtransaction制御が可能に。-->
+	<tx:annotation-driven />
+
 </beans>
